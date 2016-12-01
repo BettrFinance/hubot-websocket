@@ -17,8 +17,9 @@
     "url": "https://github.com/bkeepers/hubot-websocket.git"
   },
   "dependencies": {
-    "ws": "~0.7.2",
-    "parent-require": "^1.0.0"
+    "parent-require": "^1.0.0",
+    "uuid": "^3.0.1",
+    "ws": "~0.7.2"
   },
   "peerDependencies": {
     "hubot": ">=2.0"

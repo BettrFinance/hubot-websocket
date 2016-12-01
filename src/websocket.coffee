@@ -6,6 +6,7 @@ catch
   {Adapter,TextMessage,EnterMessage,User} = prequire 'hubot'
 
 WebSocket = require('ws')
+uuid = require('uuid/v4')
 
 class WebsocketAdapter extends Adapter
   send: (envelope, strings...) ->
@@ -22,7 +23,7 @@ class WebsocketAdapter extends Adapter
     server = new WebSocket.Server port: port
 
     server.on "connection", (socket) =>
-      user = new User "user-id", room: socket
+      user = new User uuid(), room: socket
       @receive new EnterMessage(user)
       @robot.logger.debug "Enter: %s", user.id
 
