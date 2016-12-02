@@ -27,7 +27,6 @@ class WebsocketAdapter extends Adapter
       @receive new EnterMessage(user)
       @robot.logger.debug "Enter: %s", user.id
       @robot.brain.set(user.id, socket.upgradeReq.headers.cookie)
-      @receive new TextMessage(user, "#{@robot.name} help")
 
       socket.on "message", (msg) =>
         @robot.logger.debug "Message[%s]: %s", user.id, msg
