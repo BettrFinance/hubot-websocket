@@ -11,7 +11,10 @@ uuid = require('uuid/v4')
 class WebsocketAdapter extends Adapter
   send: (envelope, strings...) ->
     @robot.logger.debug "send", envelope, strings
-    envelope.room.send str for str in strings
+    try
+       envelope.room.send str for str in strings
+    catch e
+       console.log("Error happunud2", e)
 
   reply: (envelope, strings...) ->
     @robot.logger.debug "reply", envelope, strings
