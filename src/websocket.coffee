@@ -15,7 +15,7 @@ class WebsocketAdapter extends Adapter
        envelope.room.send str for str in strings
     catch e
        if e.message.match /not opened/i
-         console.log "not opened error", envelope.room, envelope.room.close
+         envelope.room.close
 
   reply: (envelope, strings...) ->
     @robot.logger.debug "reply", envelope, strings
