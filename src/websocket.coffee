@@ -31,8 +31,8 @@ class WebsocketAdapter extends Adapter
       socket.on "message", (msg) =>
         @robot.logger.debug "Message[%s]: %s", user.id, msg
         @receive new TextMessage(user, msg)
-			socket.on "error", (err) =>
-				console.log("Error happunud", err)
+      socket.on "error", (err) =>
+        console.log("Error happunud", err)
 
     @robot.logger.info "Running websocket server on port %s", port
     @emit 'connected'
