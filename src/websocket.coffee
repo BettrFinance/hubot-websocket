@@ -14,7 +14,8 @@ class WebsocketAdapter extends Adapter
     try
        envelope.room.send str for str in strings
     catch e
-       console.log("Error happunud2", e)
+       if e.message.match /not opened/i
+         console.log "not opened error", envelope.room, envelope.room.close
 
   reply: (envelope, strings...) ->
     @robot.logger.debug "reply", envelope, strings
