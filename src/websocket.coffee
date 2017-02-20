@@ -1,9 +1,9 @@
 # This can be removed after https://github.com/npm/npm/issues/5875 is fixed.
 try
-  {Adapter,TextMessage,EnterMessage,User} = require 'hubot'
+  {Adapter,TextMessage,EnterMessage,LeaveMessage,User} = require 'hubot'
 catch
   prequire = require('parent-require')
-  {Adapter,TextMessage,EnterMessage,User} = prequire 'hubot'
+  {Adapter,TextMessage,EnterMessage,LeaveMessage,User} = prequire 'hubot'
 
 WebSocket = require('ws')
 uuid = require('uuid/v4')
@@ -38,8 +38,9 @@ class WebsocketAdapter extends Adapter
       socket.on "error", (err) =>
         console.log("Error happunud", err)
       socket.on "close", () =>
-        console.log('Deleted')
+        @receive new LeaveMessage(user)
         @robot.brain.remove(user.id)
+        console.log('deleted')
 
     @robot.logger.info "Running websocket server on port %s", port
     @emit 'connected'
