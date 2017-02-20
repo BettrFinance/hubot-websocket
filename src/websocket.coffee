@@ -37,6 +37,9 @@ class WebsocketAdapter extends Adapter
         @receive new TextMessage(user, msg)
       socket.on "error", (err) =>
         console.log("Error happunud", err)
+      socket.on "close", () =>
+        console.log('Deleted')
+        @robot.brain.remove(user.id)
 
     @robot.logger.info "Running websocket server on port %s", port
     @emit 'connected'
