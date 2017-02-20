@@ -40,7 +40,6 @@ class WebsocketAdapter extends Adapter
       socket.on "close", () =>
         @receive new LeaveMessage(user)
         @robot.brain.remove(user.id)
-        console.log('deleted')
 
     @robot.logger.info "Running websocket server on port %s", port
     @emit 'connected'
